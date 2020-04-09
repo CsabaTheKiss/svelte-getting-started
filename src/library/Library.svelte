@@ -1,6 +1,7 @@
 <script>
+  import { books } from '../data';
   import Button from '../common/Button.svelte';
-
+  import BookGrid from './BookGrid.svelte';
 </script>
 <style>
   header {
@@ -31,3 +32,5 @@
 </p>
 
 <Button>+ Add Book</Button>
+
+<BookGrid books={books} />
