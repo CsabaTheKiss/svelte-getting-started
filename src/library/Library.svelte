@@ -1,7 +1,14 @@
 <script>
-  import { books } from '../data';
+  import { onMount } from 'svelte';
+  import { httpGet } from '../common/api.js';
   import Button from '../common/Button.svelte';
   import BookGrid from './BookGrid.svelte';
+
+  let books = [];
+  onMount(async () => {
+    const { data } = await httpGet('/?_sort=id&_order=desc');
+    books = data;
+  });
 </script>
 <style>
   header {
