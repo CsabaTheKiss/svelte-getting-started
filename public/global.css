@@ -95,8 +95,6 @@ body {
   color: var(--colorFg);
   font-family: var(--typeFaceDefault);
   font-size: var(--typeSizeDefault);
-  margin: 0;
-  padding: 0;
 }
 
 h1,

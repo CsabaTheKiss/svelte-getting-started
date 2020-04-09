@@ -1,5 +1,6 @@
 <script>
   export let books = [];
+  import BookCover from '../common/BookCover.svelte';
 </script>
 
 <style>
@@ -26,6 +27,8 @@
 
 <ul>
   {#each books as book}
-    <li>{book.title}</li>
+    <li>
+      <BookCover {book} />
+    </li>
   {/each}
 </ul>
