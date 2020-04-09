@@ -1,6 +1,4 @@
 <script>
-  export let onBookSelect;
-
   import { onMount } from 'svelte';
   import { httpGet } from '../common/api.js';
   import Button from '../common/Button.svelte';
@@ -42,4 +40,4 @@
 
 <Button>+ Add Book</Button>
 
-<BookGrid { books } { onBookSelect }/>
+<BookGrid { books } on:book-select />

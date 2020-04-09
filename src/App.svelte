@@ -1,13 +1,13 @@
 <script>
   import Library from './library/Library.svelte';
 
-  function bookClickedHandler (bookId) {
-    console.warn('book clickeD: ', bookId);
+  function bookSelected (event) {
+    console.warn('book clickeD: ', event.detail.bookId);
   }
 </script>
 
 <main>
-  <Library onBookSelect={ bookClickedHandler } />
+  <Library on:book-select={ bookSelected } />
 </main>
 
 <style>
