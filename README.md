@@ -1,3 +1,9 @@
+# Learning a new skill with the help of Pluralsight
+
+Just wanted to check out this new framework, Svelte. Jumped in to Pluralsight free april (in 2020) to give Svelte - Getting started course a try.
+
+---
+
 *Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
 ---
