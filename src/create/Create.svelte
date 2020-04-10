@@ -14,13 +14,20 @@
     about: ''
   }
 
+  // $: called each time the component has a change
+  // here 'coverBookDetails' will be re-calculated every time, while an input field value below changes
+  $: coverBookDetails = { ...bookDetails, cover: bookDetails.coverUrl };
+
+  function handleSubmit (event) {
+  }
+
 </script>
 
 <BackButtonRow />
 
 <Header element="h1" size="large">Create</Header>
-
-<form>
+<!-- event modifier: |preventDefault -->
+<form on:submit|preventDefault={ handleSubmit }>
   <div class="fields">
     <TextInput label="Title" bind:value={bookDetails.title} />
     <TextInput label="Author" bind:value={bookDetails.author} />
@@ -31,7 +38,11 @@
   <div>
     <Header>Preview</Header>
     <div class="preview">
+      <BookCover book={coverBookDetails}/>
     </div>
+  </div>
+  <div>
+    <Button>Save</Button>
   </div>
 </form>
 
