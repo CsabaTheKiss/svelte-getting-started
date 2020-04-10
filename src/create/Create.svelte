@@ -3,9 +3,16 @@
   import BookCover from '../common/BookCover.svelte';
   import Button from '../common/Button.svelte';
   import Header from '../common/Header.svelte';
+  import TextInput from '../common/TextInput.svelte';
+
   import { httpPost } from '../common/api.js';
 
-  let title = '';
+  let bookDetails = {
+    title: '',
+    author: '',
+    coverUrl: '',
+    about: ''
+  }
 
 </script>
 
@@ -15,10 +22,10 @@
 
 <form>
   <div class="fields">
-    <label for="book-title">
-      <span>Title</span>
-      <input id="book-title" type="text" bind:value={title} />
-    </label>
+    <TextInput label="Title" bind:value={bookDetails.title} />
+    <TextInput label="Author" bind:value={bookDetails.author} />
+    <TextInput label="Cover URL" bind:value={bookDetails.coverUrl} />
+    <TextInput label="About" multiline bind:value={bookDetails.about} />
   </div>
 
   <div>
