@@ -29,7 +29,7 @@
 <ul>
   {#each books as book}
     <li>
-      <BookCover {book} on:book-select interactive />
+      <BookCover {book} interactive />
       {#if book.favorite}
         <div class="heart">
           <Heart />
