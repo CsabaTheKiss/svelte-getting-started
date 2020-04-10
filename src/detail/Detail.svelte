@@ -5,7 +5,7 @@
   import BookCover from '../common/BookCover.svelte';
   import Button from '../common/Button.svelte';
   import Header from '../common/Header.svelte';
-  import { httpGet } from '../common/api.js';
+  import { httpGet, httpPut } from '../common/api.js';
 
   export let bookId;
 
@@ -15,6 +15,18 @@
     const { data } = await httpGet('/' + bookId);
     book = data;
   });
+
+  async function handleFavoriteButtonClick() {
+    const updatedBook = {
+      ...book,
+      favorite: !book.favorite
+    };
+
+    const { ok } = await httpPut('/' + book.id, updatedBook);
+    if (ok) {
+      book = updatedBook;
+    }
+  }
 </script>
 
 <style>
@@ -45,7 +57,9 @@
   <div class='cover'>
     <BookCover {book} />
     <div class='favorite'>
-      <Button>{book.favorite ? 'Unfavorite' : 'Favorite'}</Button>
+      <Button on:click={ handleFavoriteButtonClick } >
+        {book.favorite ? 'Unfavorite' : 'Favorite'}
+      </Button>
     </div>
   </div>
   <div>
