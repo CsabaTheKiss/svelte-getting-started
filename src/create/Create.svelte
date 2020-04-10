@@ -1,4 +1,5 @@
 <script>
+  import { navigate } from 'svelte-routing'; 
   import BackButtonRow from '../common/BackButtonRow.svelte';
   import BookCover from '../common/BookCover.svelte';
   import Button from '../common/Button.svelte';
@@ -10,15 +11,31 @@
   let bookDetails = {
     title: '',
     author: '',
-    coverUrl: '',
+    cover: '',
     about: ''
   }
 
   // $: called each time the component has a change
   // here 'coverBookDetails' will be re-calculated every time, while an input field value below changes
-  $: coverBookDetails = { ...bookDetails, cover: bookDetails.coverUrl };
+  $: coverBookDetails = { ...bookDetails };
 
-  function handleSubmit (event) {
+  async function handleSubmit (event) {
+    const newBook = {
+      ...coverBookDetails,
+      variation: getRandomInt(0, 2),
+      favorite: false
+    }
+
+    const { ok } = await httpPost('/', newBook);
+    if (ok) {
+      navigate('/');
+    }
+  }
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
 </script>
@@ -31,7 +48,7 @@
   <div class="fields">
     <TextInput label="Title" bind:value={bookDetails.title} />
     <TextInput label="Author" bind:value={bookDetails.author} />
-    <TextInput label="Cover URL" bind:value={bookDetails.coverUrl} />
+    <TextInput label="Cover URL" bind:value={bookDetails.cover} />
     <TextInput label="About" multiline bind:value={bookDetails.about} />
   </div>
 
